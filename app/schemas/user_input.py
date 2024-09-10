@@ -30,6 +30,16 @@ class UserPreferences(BaseModel):
 class UserRequest(BaseModel):
     """
     The request of the user
-"""
+    """
     ingredients: List[Ingredients]
     preferences: Optional[UserPreferences] = None
+
+class IngredientQuantity(BaseModel):
+    """
+    The quantity of the ingredient
+    """
+    raw: str = Field(..., example="2 cups")
+    amount: Optional[float] = None
+    unit: Optional[str] = None
+
+
