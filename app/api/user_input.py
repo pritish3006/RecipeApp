@@ -10,6 +10,9 @@ router = APIRouter()
 
 @router.post("/user-input")
 async def submit_user_input(user_request: UserRequest):
+    """
+    This endpoint is used to submit user input and validate it.
+    """
     try:
         validated_request = validate_user_request(user_request)
         return {"message": "User input received successfully", "validated_request": validated_request}
@@ -18,6 +21,9 @@ async def submit_user_input(user_request: UserRequest):
 
 @router.post("/generate-recipes")
 async def generate_recipes(user_request: UserRequest):
+    """
+    This endpoint is used to generate recipes based on user input.
+    """
     try:
         validated_request = validate_user_request(user_request)
         

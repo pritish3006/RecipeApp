@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request, Response, Session
+from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.responses import JSONResponse
 from fastapi_redis_cache import FastApiRedisCache, cache
 from app.api import user_input
@@ -26,7 +26,7 @@ async def lifespan(app: FastAPI):
         prefix = "best_recipe_api-Cache",
         response_header = "X-BestRecipeAPI-Cache",
         debug = True,
-        ignore_arg_types = [Request, Response, Session]
+        ignore_arg_types = [Request, Response, Session],  # Added comma here
         ttl = 30 * 60,  # 30 minutes
     )
     yield
