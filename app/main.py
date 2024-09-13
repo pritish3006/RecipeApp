@@ -5,6 +5,7 @@ from app.api import user_input
 import logging
 import os
 from contextlib import asynccontextmanager
+from fastapi import APIRouter
 
 # configure logging
 logging.basicConfig(
@@ -36,6 +37,8 @@ async def lifespan(app: FastAPI):
 
 # Initialize FastAPI app
 app = FastAPI(title = "Best Recipe API", description = "API for Best Recipe App Ever")
+
+api_router = APIRouter(prefix="/api/v1")
 
 app.include_router(user_input.router, prefix="/api/v1")                                 # Include the user_input router and set the prefix to /api/v1
 
@@ -75,7 +78,7 @@ async def root():
     logger.info("Root endpoing accessed")
     return {"message": "Welcome to the Best Recipe API"}
 
-@app.get("api/v1/health")
+@app.get("/api/v1/health")
 async def health_check():
     """
     Check the health of the API.
